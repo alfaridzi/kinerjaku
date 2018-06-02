@@ -19,20 +19,26 @@
             </ul>
 
             <div class="dropdown animated fadeInDown animation-delay-11">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Login</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                    @if(Auth::user()) {{ Auth::user()->name }} @else Login @endif
+                </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-login-box animated flipCenter">
-                    <form role="form">
+                    @if(Auth::user())
+                    <a href="/logout">Logout</a>
+                    @else
+                    <form role="form" action="/login" method="POST">
+                        {{ csrf_field() }}
                         <h4>Login Form</h4>
 
                         <div class="form-group">
                             <div class="input-group login-input">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" name="username" placeholder="Username">
                             </div>
                             <br>
                             <div class="input-group login-input">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
                             <div class="checkbox pull-left">
                                   <input type="checkbox" id="checkbox_remember1">
@@ -44,6 +50,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div> <!-- dropdown -->
 

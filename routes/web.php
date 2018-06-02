@@ -11,12 +11,19 @@
 |
 */
 
+/** Login */
+Route::group(['as' => 'login'], function() {
+    Route::post('/login', 'AuthenticationController@login');
+    Route::get('/logout', 'AuthenticationController@logout');
+});
 
 Route::get('/', 'HomeController@index');
 Route::get('perencanaan', 'HomeController@getPerencanaan');
 Route::get('perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
 Route::get('thn/{tahun}', 'HomeController@changeTahun');
+Route::get('pengukuran/tambah', 'HomeController@getPengukuranTambah');
 Route::get('pengukuran', 'HomeController@getPengukuran');
+Route::get('pengukuran/uk/{unit}', 'HomeController@getPengukuran');
 Route::get('pelaporan', 'HomeController@getPelaporan');
 Route::get('evaluasi', 'HomeController@getEvaluasi');
 Route::group([
