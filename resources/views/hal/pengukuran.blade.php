@@ -31,7 +31,7 @@
 		</select></div>
 		<div class="panel-body">
 
-        @if(Auth::user() && \Session::get('role') == 2)
+        @if(Auth::user() && in_array("2", \Session::get('role')))
         <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Pengukuran Kerja</button><br><br>   
 
         <div id="myModal" class="modal fade" role="dialog">
