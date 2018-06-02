@@ -17,6 +17,7 @@ Route::get('perencanaan', 'HomeController@getPerencanaan');
 Route::get('perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
 Route::get('thn/{tahun}', 'HomeController@changeTahun');
 Route::get('pengukuran', 'HomeController@getPengukuran');
+Route::get('pengukuran/uk/{unit}', 'HomeController@getPengukuran');
 Route::get('pelaporan', 'HomeController@getPelaporan');
 Route::get('evaluasi', 'HomeController@getEvaluasi');
 Route::group([

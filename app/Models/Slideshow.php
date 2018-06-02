@@ -9,9 +9,9 @@ class Slideshow extends Model
 {
     use CrudTrait;
 
-    protected $table = 'slideshow'; 
-	protected $primaryKey = 'slideshow_id'; 
-    protected $fillable = ['image', 'deksripsi','judul', 'featured'];
+    protected $table        = 'slideshow'; 
+	protected $primaryKey   = 'slideshow_id'; 
+    protected $fillable     = ['image', 'deksripsi','judul', 'featured'];
 
     
 }

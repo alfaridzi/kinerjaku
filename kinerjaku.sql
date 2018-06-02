@@ -1488,13 +1488,13 @@ DELETE FROM `permission_users`;
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` json NOT NULL,
-  `description` json DEFAULT NULL,
-  `details` json DEFAULT NULL,
-  `features` json DEFAULT NULL,
+  `name` binary NOT NULL,
+  `description` binary DEFAULT NULL,
+  `details` binary DEFAULT NULL,
+  `features` binary DEFAULT NULL,
   `price` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `extras` json DEFAULT NULL,
+  `extras` binary DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
