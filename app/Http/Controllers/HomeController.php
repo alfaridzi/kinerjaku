@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Session;
 use Redirect;
+use Response;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Models\Perencanaan;
+use App\Models\Pengukuran;
 use App\Models\UnitKerja;
+
 
 class HomeController extends Controller
 {
@@ -69,6 +74,18 @@ class HomeController extends Controller
 
         $pengukuran      =   $pengukurans->get();
 
-        return view('hal.pengukuran', compact('tahun', 'pengukuran'));
+        $unit            =   UnitKerja::get();
+
+        return view('hal.pengukuran', compact('tahun', 'pengukuran', 'unit'));
+    }
+
+    function getPengukuranTambah(Request $request) {
+        $u  =   UnitKerja::where('nama_unit', $request->unit)->first();
+
+        $request->request->add(['unitkerja_id' => $u->unitkerja_id]);
+
+        Pengukuran::create($request->except(['unit']));
+
+        return Response::json('true');
     }
 }

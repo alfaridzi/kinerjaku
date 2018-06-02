@@ -5,6 +5,8 @@
 @section('css')
 @endsection
 @section('js')
+<script src="/js/app.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 @endsection
 @section('content')
 <header class="main-header">
@@ -28,6 +30,50 @@
 		<option value="thn/2016"@if($tahun == '2016') selected @endif>2016</option>
 		</select></div>
 		<div class="panel-body">
+
+        @if(Auth::user() && \Session::get('role') == 2)
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Pengukuran Kerja</button><br><br>   
+
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tambah Pengukuran Kinerja</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <select id="id_unit" class="form-control">
+                        @foreach($unit as $u)
+                            <option value="{{ $u->nama_unit }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
+                        @endforeach
+                    </select>
+                </div><br>
+                <div>
+                    <input type="number" id="tw1" class="form-control" placeholder="Triwulan 1">
+                </div><br>
+                <div>
+                    <input type="number" id="tw2" class="form-control" placeholder="Triwulan 2">
+                </div><br>
+                <div>
+                    <input type="number" id="tw3" class="form-control" placeholder="Triwulan 3">
+                </div><br>
+                <div>
+                    <input type="number" id="tw4" class="form-control" placeholder="Triwulan 4">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit_data" data-dismiss="modal">Tambah Data</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+        </div>  
+        @endif
+
         <table class="table table-hover table-striped table-bordered table-hover text-center">
             <thead>
                 <tr>
@@ -40,7 +86,7 @@
                     <th width="10%" style="text-align: center; ">CASCADING</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="content">
                 @forelse($pengukuran as $no => $p)
                 <tr>
                     <td>{{ $no += 1 }}</td>
@@ -49,7 +95,7 @@
                         style="color: white; background:
                         @if($p->tw1 >= 100)
                         #007f02
-                        @elseif($p->tw1 <= 80 && $p->tw1 < 100)
+                        @elseif($p->tw1 >= 80 && $p->tw1 < 100)
                         #fdd700
                         @else
                         #fe0000
@@ -60,7 +106,7 @@
                         style="color: white; background:
                         @if($p->tw2 >= 100)
                         #007f02
-                        @elseif($p->tw2 <= 80 && $p->tw2 < 100)
+                        @elseif($p->tw2 >= 80 && $p->tw2 < 100)
                         #fdd700
                         @else
                         #fe0000
@@ -71,7 +117,7 @@
                         style="color: white; background:
                         @if($p->tw3 >= 100)
                         #007f02
-                        @elseif($p->tw3 <= 80 && $p->tw3 < 100)
+                        @elseif($p->tw3 >= 80 && $p->tw3 < 100)
                         #fdd700
                         @else
                         #fe0000
