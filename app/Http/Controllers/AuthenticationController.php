@@ -13,9 +13,15 @@ class AuthenticationController extends Controller
 {
     function login(Request $request) {
         if(Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
-            $p  =   Permission::where('user_id', Auth::user()->id)->first();
+            $p              =   Permission::where('user_id', Auth::user()->id)->get();
 
-            Session::put('role', $p->permission_id);
+            $permission     =   [];
+
+            foreach($p as $per) {
+                array_push($permission, $per->permission_id);
+            }
+
+            Session::put('role', $permission); 
 
             return redirect()->back()->with('alert', 'Berhasil Login');
         } else {
