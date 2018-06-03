@@ -5,6 +5,8 @@
 @section('css')
 @endsection
 @section('js')
+<script src="/js/perencanaan.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 @endsection
 @section('content')
 <header class="main-header">
@@ -38,12 +40,53 @@
 <section class="margin-bottom">
     <div class="panel panel-primary-dark">
 		<div class="panel-heading">PERENCANAAN KINERJA PADA TAHUN  {{$tahun}} <select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" style="color:black"class="pull-right">
-        <option value="thn/2020"@if($tahun == '2020') selected @endif>2020</option>
+    <option value="thn/2020"@if($tahun == '2020') selected @endif>2020</option>
 		<option value="thn/2019"@if($tahun == '2019') selected @endif>2019</option>
 		<option value="thn/2018"@if($tahun == '2018') selected @endif>2018</option>
 		<option value="thn/2017"@if($tahun == '2017') selected @endif>2017</option>
 		<option value="thn/2016"@if($tahun == '2016') selected @endif>2016</option>
 		</select></div>
+
+    @if(Auth::user() && in_array("2", \Session::get('role')))
+    <br><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
+
+    <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Tambah Pengukuran Kinerja</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+              <span>Nama Unit</span>
+                <select id="id_unit" class="form-control">
+                    @foreach($unit as $u)
+                        <option value="{{ $u->nama_unit }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
+                    @endforeach
+                </select>
+            </div><br>
+            <div>
+                <span>RENSRA</span>
+                <input type="file" id="rensra" class="form-control" placeholder="RENSRA">
+            </div><br>
+            <div>
+                <span>PK</span>
+                <input type="file" id="pk" class="form-control" placeholder="PK">
+            </div><br>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="submit_data" data-dismiss="modal">Tambah Data</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+
+    </div>
+    </div>
+    @endif
+
 		<div class="panel-body">
 	<table class="table table-hover table-striped table-bordered table-hover text-center">
 								<thead>
@@ -85,7 +128,7 @@
                                         <a href="{!! $unitkerja->pk !!}" target="_blank"title="PK {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
                                         @endif </td>
                                      <td>
-                                        @if($unitkerja->iku)
+                                        @if($unitkerja->iku_id)
                                         <a href="{!! URL::to('iku/'.$unitkerja->unitkerja_id.'/'.$unitkerja->iku_id) !!}" title="IKU {!! $unitkerja->nama_unit !!}"><i class="glyphicon glyphicon-search"></i></a>
                                         @endif </td>
                                     <td>
@@ -98,6 +141,6 @@
 							</table>
 			</div>
 	</div>
-</section> 
+</section>
 </div>
 @endsection

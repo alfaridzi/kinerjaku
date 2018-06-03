@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(document).on('click', '#submit_data', function() {
         let     tw1      =      $("#tw1").val(),
-                tw2      =      $("#tw2").val(),    
+                tw2      =      $("#tw2").val(),
                 tw3      =      $("#tw3").val(),
                 tw4      =      $("#tw4").val(),
                 unit     =      $("#id_unit").val(),
@@ -32,10 +32,10 @@ $(document).ready(function() {
                     </tr>
                 `);
 
-                $("#tw1").val(''),
-                $("#tw2").val(''),    
-                $("#tw3").val(''),
-                $("#tw4").val(''),
+                $("#tw1").val('');
+                $("#tw2").val('');
+                $("#tw3").val('');
+                $("#tw4").val('');
             }
         })
     });
@@ -50,4 +50,3 @@ $(document).ready(function() {
         }
     }
 });
-

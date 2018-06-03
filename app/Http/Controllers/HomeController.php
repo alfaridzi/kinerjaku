@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Perencanaan;
 use App\Models\Pengukuran;
 use App\Models\UnitKerja;
+use App\Models\Rkt;
+use App\Models\Iku;
 
 
 class HomeController extends Controller
@@ -23,20 +25,23 @@ class HomeController extends Controller
     }
     public function getPerencanaan()
     {
-        if (Session::has('tahun')){ 
+        if (Session::has('tahun')){
         $tahun = session('tahun');
         }else{
         $tahun = date('Y');
         session(['tahun' => $tahun]);
         }
         $i = 0;
-        $perencanaanawal = UnitKerja::leftjoin('perencanaan','perencanaan.unitkerja_id','unitkerja.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=','0')->get();
-        return view('hal.perencanaan')->with('tahun',$tahun)->with('perencanaan',$perencanaanawal)->with('i',$i);
+        $perencanaanawal = UnitKerja::leftJoin('perencanaan','perencanaan.unitkerja_id','unitkerja.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=','0')->get();
+
+        $unit            =   UnitKerja::get();
+
+        return view('hal.perencanaan', compact('tahun', 'i', 'unit'))->with('perencanaan',$perencanaanawal);
     }
 
     public function getPerencanaanUk($unit)
     {
-        if (Session::has('tahun')){ 
+        if (Session::has('tahun')){
         $tahun = session('tahun');
         }else{
         $tahun = date('Y');
@@ -44,10 +49,15 @@ class HomeController extends Controller
         }
         $i = 0;
         $unitkerjanya = UnitKerja::find($unit);
-        $perencanaan = UnitKerja::leftjoin('perencanaan','perencanaan.unitkerja_id','unitkerja.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=',$unit)->get();
+        $perencanaan = UnitKerja::leftJoin('perencanaan','perencanaan.unitkerja_id','unitkerja.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=',$unit)->get();
         return view('hal.perencanaanuk')->with('tahun',$tahun)->with('perencanaan',$perencanaan)->with('unitkerjanya',$unitkerjanya)->with('i',$i);
     }
-    
+
+    function getPerencanaanTambah(Request $request){
+
+      return Response::json($request->rensra);
+    }
+
     public function changeTahun($tahun)
     {
         session(['tahun' => $tahun]);
@@ -55,14 +65,14 @@ class HomeController extends Controller
     }
 
     function getPengukuran($unit = null) {
-        if (Session::has('tahun')){ 
+        if (Session::has('tahun')){
             $tahun = session('tahun');
         }else{
             $tahun = date('Y');
             session(['tahun' => $tahun]);
         }
 
-        $pengukurans     =   UnitKerja::join('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id');
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id');
 
         if(Session::has('tahun')) {
             $pengukurans->whereYear('pengukuran.created_at', Session::get('tahun'));
@@ -87,5 +97,26 @@ class HomeController extends Controller
         Pengukuran::create($request->except(['unit']));
 
         return Response::json('true');
+    }
+
+    function getRkt($unit, $rkt) {
+        $rkt    =   Rkt::where('parent_rkt', 0)
+                    ->where('unitkerja_id', $unit)->get();
+
+        $unit   =   UnitKerja::where('unitkerja_id', $unit)->first();
+
+        $i      =   0;
+
+        return view('hal.rkt', compact('rkt', 'unit', 'i'));
+    }
+
+    function getIku($unit, $iku) {
+        $iku    =   Iku::where('unitkerja_id', $unit)->get();
+
+        $unit   =   UnitKerja::where('unitkerja_id', $unit)->first();
+
+        $i      =   0;
+
+        return view('hal.iku', compact('iku', 'unit', 'i'));
     }
 }
