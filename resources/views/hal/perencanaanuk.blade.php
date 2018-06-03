@@ -9,11 +9,10 @@
 @section('content')
 <header class="main-header">
     <div class="container">
-        <h1 class="page-title">PERENCANAAN KINERJA {!!$unitkerjanya->nama_unit!!}</h1>
+        <h1 class="page-title">PERENCANAAN KINERJA TAHUN {{$tahun}} </h1>
 
         <ol class="breadcrumb pull-right">
             <li><a href="{!! URL::to('perencanaan') !!}">Perencanaan Kinerja</a></li>
-            <li class="#">Unit Kerja</li>
             <li class="active">{!!$unitkerjanya->nama_unit!!}</li>
         </ol>
     </div>
@@ -21,7 +20,7 @@
 <div class="container">
 <section class="margin-bottom">
     <div class="panel panel-primary-dark">
-		<div class="panel-heading">PERENCANAAN KINERJA PADA TAHUN {{$tahun}} <select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" style="color:black"class="pull-right">
+		<div class="panel-heading">PERENCANAAN KINERJA {!!$unitkerjanya->nama_unit!!} <select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" style="color:black"class="pull-right">
         <option value="thn/2020"@if($tahun == '2020') selected @endif>2020</option>
 		<option value="thn/2019"@if($tahun == '2019') selected @endif>2019</option>
 		<option value="thn/2018"@if($tahun == '2018') selected @endif>2018</option>

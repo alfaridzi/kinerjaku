@@ -13,12 +13,10 @@
 
 
 -- Dumping database structure for kinerjaku
-DROP DATABASE IF EXISTS `kinerjaku`;
 CREATE DATABASE IF NOT EXISTS `kinerjaku` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `kinerjaku`;
 
 -- Dumping structure for table kinerjaku.articles
-DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int(10) unsigned NOT NULL,
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1032 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.articles: ~963 rows (approximately)
+-- Dumping data for table kinerjaku.articles: ~1,031 rows (approximately)
 DELETE FROM `articles`;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`id`, `category_id`, `title`, `slug`, `content`, `image`, `status`, `date`, `featured`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1073,7 +1071,6 @@ INSERT INTO `articles` (`id`, `category_id`, `title`, `slug`, `content`, `image`
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.article_tag
-DROP TABLE IF EXISTS `article_tag`;
 CREATE TABLE IF NOT EXISTS `article_tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `article_id` int(10) unsigned NOT NULL,
@@ -1090,7 +1087,6 @@ DELETE FROM `article_tag`;
 /*!40000 ALTER TABLE `article_tag` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.categories
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT '0',
@@ -1139,7 +1135,6 @@ INSERT INTO `categories` (`id`, `parent_id`, `lft`, `rgt`, `depth`, `name`, `slu
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.icons
-DROP TABLE IF EXISTS `icons`;
 CREATE TABLE IF NOT EXISTS `icons` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1155,7 +1150,6 @@ DELETE FROM `icons`;
 /*!40000 ALTER TABLE `icons` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.iku
-DROP TABLE IF EXISTS `iku`;
 CREATE TABLE IF NOT EXISTS `iku` (
   `iku_id` int(11) NOT NULL,
   `no` int(3) NOT NULL,
@@ -1177,7 +1171,6 @@ DELETE FROM `iku`;
 /*!40000 ALTER TABLE `iku` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.menu_items
-DROP TABLE IF EXISTS `menu_items`;
 CREATE TABLE IF NOT EXISTS `menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -1207,7 +1200,6 @@ INSERT INTO `menu_items` (`id`, `name`, `type`, `link`, `page_id`, `parent_id`, 
 /*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.migrations
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1241,7 +1233,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.monsters
-DROP TABLE IF EXISTS `monsters`;
 CREATE TABLE IF NOT EXISTS `monsters` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1295,7 +1286,6 @@ DELETE FROM `monsters`;
 /*!40000 ALTER TABLE `monsters` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.monster_article
-DROP TABLE IF EXISTS `monster_article`;
 CREATE TABLE IF NOT EXISTS `monster_article` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `monster_id` int(10) unsigned NOT NULL,
@@ -1312,7 +1302,6 @@ DELETE FROM `monster_article`;
 /*!40000 ALTER TABLE `monster_article` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.monster_category
-DROP TABLE IF EXISTS `monster_category`;
 CREATE TABLE IF NOT EXISTS `monster_category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `monster_id` int(10) unsigned NOT NULL,
@@ -1329,7 +1318,6 @@ DELETE FROM `monster_category`;
 /*!40000 ALTER TABLE `monster_category` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.monster_tag
-DROP TABLE IF EXISTS `monster_tag`;
 CREATE TABLE IF NOT EXISTS `monster_tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `monster_id` int(10) unsigned NOT NULL,
@@ -1346,7 +1334,6 @@ DELETE FROM `monster_tag`;
 /*!40000 ALTER TABLE `monster_tag` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.pages
-DROP TABLE IF EXISTS `pages`;
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `template` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1370,7 +1357,6 @@ INSERT INTO `pages` (`id`, `template`, `name`, `title`, `slug`, `content`, `extr
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.password_resets
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1385,7 +1371,6 @@ DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.pengukuran
-DROP TABLE IF EXISTS `pengukuran`;
 CREATE TABLE IF NOT EXISTS `pengukuran` (
   `pengukuran_id` int(11) NOT NULL AUTO_INCREMENT,
   `unitkerja_id` int(11) NOT NULL,
@@ -1404,7 +1389,6 @@ DELETE FROM `pengukuran`;
 /*!40000 ALTER TABLE `pengukuran` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.perencanaan
-DROP TABLE IF EXISTS `perencanaan`;
 CREATE TABLE IF NOT EXISTS `perencanaan` (
   `perancanaan_id` int(11) NOT NULL AUTO_INCREMENT,
   `tahun` int(10) NOT NULL,
@@ -1425,7 +1409,6 @@ DELETE FROM `perencanaan`;
 /*!40000 ALTER TABLE `perencanaan` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.permissions
-DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1453,7 +1436,6 @@ INSERT INTO `permissions` (`id`, `name`, `created_at`, `updated_at`) VALUES
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.permission_roles
-DROP TABLE IF EXISTS `permission_roles`;
 CREATE TABLE IF NOT EXISTS `permission_roles` (
   `permission_id` int(10) unsigned NOT NULL,
   `role_id` int(10) unsigned NOT NULL,
@@ -1463,13 +1445,21 @@ CREATE TABLE IF NOT EXISTS `permission_roles` (
   CONSTRAINT `permission_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.permission_roles: ~0 rows (approximately)
+-- Dumping data for table kinerjaku.permission_roles: ~8 rows (approximately)
 DELETE FROM `permission_roles`;
 /*!40000 ALTER TABLE `permission_roles` DISABLE KEYS */;
+INSERT INTO `permission_roles` (`permission_id`, `role_id`) VALUES
+	(1, 1),
+	(2, 1),
+	(3, 1),
+	(4, 1),
+	(1, 2),
+	(2, 2),
+	(3, 2),
+	(4, 2);
 /*!40000 ALTER TABLE `permission_roles` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.permission_users
-DROP TABLE IF EXISTS `permission_users`;
 CREATE TABLE IF NOT EXISTS `permission_users` (
   `user_id` int(10) unsigned NOT NULL,
   `permission_id` int(10) unsigned NOT NULL,
@@ -1485,16 +1475,15 @@ DELETE FROM `permission_users`;
 /*!40000 ALTER TABLE `permission_users` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.products
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` binary NOT NULL,
-  `description` binary DEFAULT NULL,
-  `details` binary DEFAULT NULL,
-  `features` binary DEFAULT NULL,
+  `name` binary(1) NOT NULL,
+  `description` binary(1) DEFAULT NULL,
+  `details` binary(1) DEFAULT NULL,
+  `features` binary(1) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `extras` binary DEFAULT NULL,
+  `extras` binary(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1506,7 +1495,6 @@ DELETE FROM `products`;
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.revisions
-DROP TABLE IF EXISTS `revisions`;
 CREATE TABLE IF NOT EXISTS `revisions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `revisionable_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1527,7 +1515,6 @@ DELETE FROM `revisions`;
 /*!40000 ALTER TABLE `revisions` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.rkt
-DROP TABLE IF EXISTS `rkt`;
 CREATE TABLE IF NOT EXISTS `rkt` (
   `rkt_id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_rkt` int(10) NOT NULL,
@@ -1548,7 +1535,6 @@ DELETE FROM `rkt`;
 /*!40000 ALTER TABLE `rkt` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.roles
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1556,15 +1542,17 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_name_unique` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.roles: ~0 rows (approximately)
+-- Dumping data for table kinerjaku.roles: ~2 rows (approximately)
 DELETE FROM `roles`;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+	(1, 'Admin (FPK)', '2018-06-02 23:20:43', '2018-06-02 23:20:43'),
+	(2, 'Users', '2018-06-02 23:20:57', '2018-06-02 23:20:57');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.role_users
-DROP TABLE IF EXISTS `role_users`;
 CREATE TABLE IF NOT EXISTS `role_users` (
   `role_id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
@@ -1574,13 +1562,15 @@ CREATE TABLE IF NOT EXISTS `role_users` (
   CONSTRAINT `role_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.role_users: ~0 rows (approximately)
+-- Dumping data for table kinerjaku.role_users: ~2 rows (approximately)
 DELETE FROM `role_users`;
 /*!40000 ALTER TABLE `role_users` DISABLE KEYS */;
+INSERT INTO `role_users` (`role_id`, `user_id`) VALUES
+	(1, 2),
+	(2, 2);
 /*!40000 ALTER TABLE `role_users` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.settings
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1605,7 +1595,6 @@ INSERT INTO `settings` (`id`, `key`, `name`, `description`, `value`, `field`, `a
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.slideshow
-DROP TABLE IF EXISTS `slideshow`;
 CREATE TABLE IF NOT EXISTS `slideshow` (
   `slideshow_id` int(10) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) NOT NULL,
@@ -1617,7 +1606,7 @@ CREATE TABLE IF NOT EXISTS `slideshow` (
   PRIMARY KEY (`slideshow_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kinerjaku.slideshow: ~0 rows (approximately)
+-- Dumping data for table kinerjaku.slideshow: ~1 rows (approximately)
 DELETE FROM `slideshow`;
 /*!40000 ALTER TABLE `slideshow` DISABLE KEYS */;
 INSERT INTO `slideshow` (`slideshow_id`, `image`, `judul`, `dekripsi`, `featured`, `created_at`, `updated_at`) VALUES
@@ -1625,7 +1614,6 @@ INSERT INTO `slideshow` (`slideshow_id`, `image`, `judul`, `dekripsi`, `featured
 /*!40000 ALTER TABLE `slideshow` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.tags
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1665,33 +1653,61 @@ INSERT INTO `tags` (`id`, `name`, `slug`, `created_at`, `updated_at`, `deleted_a
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.unitkerja
-DROP TABLE IF EXISTS `unitkerja`;
 CREATE TABLE IF NOT EXISTS `unitkerja` (
   `unitkerja_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_unit` varchar(20) NOT NULL,
+  `nama_unit` varchar(150) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `lft` int(10) NOT NULL,
-  `rgt` int(10) NOT NULL,
-  `depth` int(10) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `lft` int(10) DEFAULT '0',
+  `rgt` int(10) DEFAULT '0',
+  `depth` int(10) DEFAULT '0',
   `urutan` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`unitkerja_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kinerjaku.unitkerja: ~5 rows (approximately)
+-- Dumping data for table kinerjaku.unitkerja: ~35 rows (approximately)
 DELETE FROM `unitkerja`;
 /*!40000 ALTER TABLE `unitkerja` DISABLE KEYS */;
 INSERT INTO `unitkerja` (`unitkerja_id`, `nama_unit`, `parent_id`, `created_at`, `updated_at`, `lft`, `rgt`, `depth`, `urutan`) VALUES
-	(2, 'asdadsdas', 0, '2018-05-27 13:36:13', '2018-05-27 13:36:13', 0, 0, 0, NULL),
-	(3, 'xxxx', 2, '2018-05-27 13:36:39', '2018-05-27 13:36:39', 0, 0, 0, NULL),
-	(4, 'adsdsadas', 3, '2018-05-27 13:37:52', '2018-05-27 13:37:52', 0, 0, 0, NULL),
-	(5, 'sdadsadsa', 0, '2018-05-27 13:41:54', '2018-05-27 13:41:54', 0, 0, 0, NULL),
-	(6, 'dadavv', 2, '2018-05-27 13:42:36', '2018-05-27 13:42:36', 0, 0, 0, 'b');
+	(7, 'KEMENTERIAN KELAUTAN', 0, '2018-06-02 23:25:45', '2018-06-02 23:25:45', 0, 0, 0, '1'),
+	(9, 'SEKRETARIAT JENDERAL', 0, '2018-06-02 23:37:06', '2018-06-02 23:37:06', 0, 0, 0, '2'),
+	(10, 'INSPEKTORAT JENDERAL', 0, '2018-06-02 23:39:14', '2018-06-02 23:39:14', 0, 0, 0, '3'),
+	(11, 'DIREKTORAT JENDERAL PERIKANAN TANGKAP', 0, '2018-06-02 23:39:24', '2018-06-02 23:39:24', 0, 0, 0, '4'),
+	(12, 'DIREKTORAT JENDERAL PERIKANAN BUDIDAYA', 0, '2018-06-02 23:39:42', '2018-06-02 23:39:42', 0, 0, 0, '5'),
+	(13, 'DIREKTORAT JENDERAL PENGUATAN DAYA SAING PRODUK KELAUTAN DAN PERIKANAN', 0, '2018-06-02 23:39:52', '2018-06-02 23:39:52', 0, 0, 0, '6'),
+	(14, 'DIREKTORAT JENDERAL PENGELOLAAN RUANG LAUT', 0, '2018-06-02 23:40:01', '2018-06-02 23:40:01', 0, 0, 0, '7'),
+	(15, 'DIREKTORAT JENDERAL PENGAWASAN SUMBER DAYA KELAUTAN DAN PERIKANAN', 0, '2018-06-02 23:40:14', '2018-06-02 23:40:14', 0, 0, 0, '8'),
+	(16, 'BADAN RISET DAN SUMBER DAYA MANUSIA KELAUTAN DAN PERIKANAN', 0, '2018-06-02 23:40:23', '2018-06-02 23:40:23', 0, 0, 0, '9'),
+	(17, 'BADAN KARANTINA IKAN, PENGENDALIAN MUTU DAN KEAMANAN HASIL PERIKANAN', 0, '2018-06-02 23:41:03', '2018-06-02 23:41:03', 0, 0, 0, '10'),
+	(22, 'SEKRETARIAT JENDERAL', 7, '2018-06-02 23:37:06', '2018-06-02 23:37:06', 0, 0, 0, '1'),
+	(23, 'INSPEKTORAT JENDERAL', 7, '2018-06-02 23:39:14', '2018-06-02 23:39:14', 0, 0, 0, '2'),
+	(24, 'DIREKTORAT JENDERAL PERIKANAN TANGKAP', 7, '2018-06-02 23:39:24', '2018-06-02 23:39:24', 0, 0, 0, '3'),
+	(25, 'DIREKTORAT JENDERAL PERIKANAN BUDIDAYA', 7, '2018-06-02 23:39:42', '2018-06-02 23:39:42', 0, 0, 0, '4'),
+	(26, 'DIREKTORAT JENDERAL PENGUATAN DAYA SAING PRODUK KELAUTAN DAN PERIKANAN', 7, '2018-06-02 23:39:52', '2018-06-02 23:39:52', 0, 0, 0, '5'),
+	(27, 'DIREKTORAT JENDERAL PENGELOLAAN RUANG LAUT', 7, '2018-06-02 23:40:01', '2018-06-02 23:40:01', 0, 0, 0, '6'),
+	(28, 'DIREKTORAT JENDERAL PENGAWASAN SUMBER DAYA KELAUTAN DAN PERIKANAN', 7, '2018-06-02 23:40:14', '2018-06-02 23:40:14', 0, 0, 0, '7'),
+	(29, 'BADAN RISET DAN SUMBER DAYA MANUSIA KELAUTAN DAN PERIKANAN', 7, '2018-06-02 23:40:23', '2018-06-02 23:40:23', 0, 0, 0, '8'),
+	(30, 'BADAN KARANTINA IKAN, PENGENDALIAN MUTU DAN KEAMANAN HASIL PERIKANAN', 7, '2018-06-02 23:41:03', '2018-06-02 23:41:03', 0, 0, 0, '9'),
+	(31, 'BIRO PERENCANAAN', 22, '2018-06-03 00:02:12', '2018-06-03 00:02:12', 0, 0, 0, '1'),
+	(32, 'BIRO SUMBER DAYA MANUSIA APARATUR', 22, NULL, NULL, NULL, NULL, NULL, '2'),
+	(33, 'BIRO KEUANGAN', 22, NULL, NULL, NULL, NULL, NULL, '3'),
+	(34, 'BIRO HUKUM DAN ORGANISASI', 22, NULL, NULL, NULL, NULL, NULL, '4'),
+	(35, 'BIRO UMUM', 22, NULL, NULL, NULL, NULL, NULL, '5'),
+	(36, 'SATUAN OTORITA BATAM', 22, NULL, NULL, NULL, NULL, NULL, '6'),
+	(37, 'BIRO KERJA SAMA DAN HUBUNGAN MASYARAKAT', 22, NULL, NULL, NULL, NULL, NULL, '7'),
+	(38, 'PUSAT DATA, STATISTIK, DAN INFORMASI', 22, NULL, NULL, NULL, NULL, NULL, '8'),
+	(39, 'BIRO KEUANGAN', 22, NULL, NULL, NULL, NULL, NULL, '9'),
+	(40, 'BAGIAN PERENCANAAN UMUM', 31, NULL, NULL, 0, 0, 0, '1'),
+	(41, 'BAGIAN PERENCANAAN PROGRAM DAN ANGGARAN', 31, NULL, NULL, 0, 0, 0, '2'),
+	(42, 'BAGIAN PENGELOLAAN KINERJA', 31, NULL, NULL, 0, 0, 0, '3'),
+	(43, 'BAGIAN MONITORING DAN EVALUASI', 31, NULL, NULL, 0, 0, 0, '4'),
+	(44, 'SUBBAGIAN PERENCANAAN KEBIJAKAN TERPADU', 40, NULL, NULL, 0, 0, 0, '1'),
+	(45, 'SUBBAGIAN PERENCANAAN LINTAS SEKTOR DAN LUAR NEGERI', 40, NULL, NULL, 0, 0, 0, '2'),
+	(46, 'SUBBAGIAN TATA USAHA', 40, NULL, NULL, 0, 0, 0, '3');
 /*!40000 ALTER TABLE `unitkerja` ENABLE KEYS */;
 
 -- Dumping structure for table kinerjaku.users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1702,13 +1718,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.users: ~0 rows (approximately)
+-- Dumping data for table kinerjaku.users: ~2 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Demo Admin', 'admin@example.com', '$2y$10$4aEgSdkvhaZCOyO8ReBSLuwdS/P2TOyWYG5oNZUmjr2R/ClRBnlxu', 'wQnT6WiPKjzTNHHdCZiZJg6tMNGZmK3K8MHpvGpdmPcOJKV5zpes1Uvx2TmL', NULL, NULL);
+	(1, 'Demo Admin', 'admin@example.com', '$2y$10$4aEgSdkvhaZCOyO8ReBSLuwdS/P2TOyWYG5oNZUmjr2R/ClRBnlxu', 'VOlM2dl1GlAgyqQsjDm9zrHCShnoj1eCAcBmHi8I4cYsvL6eMev1qVUmDm8d', NULL, NULL),
+	(2, 'Rizki', 'yazir@reinovasi.com', '$2y$10$oze8OXP4ma1o/FnFjXRNTusqlBU5l.2vBUQu1jch5usmeWXwETC9u', 'SO4HqAEmJcZI7QtmFIoz4ONbz6pOPltZo4p5fP7Nt3mWJTTbOEmMDTK088bR', '2018-06-02 23:21:53', '2018-06-02 23:21:53');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

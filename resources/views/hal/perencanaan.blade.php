@@ -9,7 +9,7 @@
 @section('content')
 <header class="main-header">
     <div class="container">
-        <h1 class="page-title">PERENCANAAN KINERJA</h1>
+        <h1 class="page-title">PERENCANAAN KINERJA {{$tahun}} </h1>
 
         <ol class="breadcrumb pull-right">
             <li><a href="#">Perencanaan Kinerja</a></li>
