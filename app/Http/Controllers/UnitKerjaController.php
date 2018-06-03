@@ -37,6 +37,14 @@ class UnitKerjaController extends CrudController
                                 'attribute' => 'nama_unit',
                                 'model' => "App\Models\UnitKerja",
                             ]);
+      $this->crud->addColumn([
+                                'label' => 'User',
+                                'type' => 'select',
+                                'name' => 'user_id',
+                                'entity' => 'parent',
+                                'attribute' => 'name',
+                                'model' => "App\User",
+                          ]);
 
         $this->crud->addField([
                                 'name' => 'nama_unit',
@@ -54,6 +62,14 @@ class UnitKerjaController extends CrudController
                                 'entity' => 'parent',
                                 'attribute' => 'nama_unit',
                                 'model' => "App\Models\UnitKerja",
+                            ]);
+        $this->crud->addField([
+                                'label' => 'User',
+                                'type' => 'select',
+                                'name' => 'user_id',
+                                'entity' => 'parent',
+                                'attribute' => 'name',
+                                'model' => "App\User",
                             ]);
     }
 

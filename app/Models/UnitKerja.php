@@ -9,9 +9,9 @@ class UnitKerja extends Model
 {
     use CrudTrait;
 
-    protected $table = 'unitkerja'; 
-	protected $primaryKey = 'unitkerja_id'; 
-    protected $fillable = ['nama_unit', 'urutan','parent_id', 'parent_id'];
+    protected $table = 'unitkerja';
+	  protected $primaryKey = 'unitkerja_id';
+    protected $fillable = ['nama_unit', 'urutan','parent_id', 'user_id'];
 
     public function parent()
     {

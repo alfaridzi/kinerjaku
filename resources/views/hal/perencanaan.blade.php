@@ -30,7 +30,8 @@
 		<option value="thn/2016"@if($tahun == '2016') selected @endif>2016</option>
 		</select></div>
 
-    @if(Auth::user() && in_array("2", \Session::get('role')))
+    @if(Auth::user() && \Session::has('role'))
+    @if(in_array("2", \Session::get('role')))
     <br><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
 
     <div id="myModal" class="modal fade" role="dialog">
@@ -69,6 +70,7 @@
     </div>
     </div>
     @endif
+    @endif
 
 		<div class="panel-body">
 	<table class="table table-hover table-striped table-bordered table-hover text-center">
@@ -89,7 +91,7 @@
                                     @forelse($perencanaan as $unitkerja)
     						    <tr>
 								    <td><?php $i++;echo $i;?></td>
-								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button></td>
+								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} @if(Auth::user() && \Session::has('role') && in_array("1", \Session::get('role')) ) <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button>@endif</td>
                                     <td>
                                         @if($unitkerja->tusi)
                                         <a href="{!! $unitkerja->tusi !!}" target="_blank"title="TUSI {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
