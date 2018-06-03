@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1032 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.articles: ~1,031 rows (approximately)
+-- Dumping data for table kinerjaku.articles: ~978 rows (approximately)
 DELETE FROM `articles`;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`id`, `category_id`, `title`, `slug`, `content`, `image`, `status`, `date`, `featured`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -1380,6 +1380,7 @@ CREATE TABLE IF NOT EXISTS `pengukuran` (
   `tw4` decimal(5,0) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `tahun` int(5) DEFAULT NULL,
   PRIMARY KEY (`pengukuran_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1398,6 +1399,8 @@ CREATE TABLE IF NOT EXISTS `perencanaan` (
   `rkt_id` int(11) DEFAULT NULL,
   `iku_id` int(11) DEFAULT NULL,
   `keterangan` text NOT NULL,
+  `tusi` varchar(255) DEFAULT NULL,
+  `renja` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`perancanaan_id`)
@@ -1606,7 +1609,7 @@ CREATE TABLE IF NOT EXISTS `slideshow` (
   PRIMARY KEY (`slideshow_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kinerjaku.slideshow: ~1 rows (approximately)
+-- Dumping data for table kinerjaku.slideshow: ~0 rows (approximately)
 DELETE FROM `slideshow`;
 /*!40000 ALTER TABLE `slideshow` DISABLE KEYS */;
 INSERT INTO `slideshow` (`slideshow_id`, `image`, `judul`, `dekripsi`, `featured`, `created_at`, `updated_at`) VALUES
@@ -1720,12 +1723,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table kinerjaku.users: ~2 rows (approximately)
+-- Dumping data for table kinerjaku.users: ~1 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Demo Admin', 'admin@example.com', '$2y$10$4aEgSdkvhaZCOyO8ReBSLuwdS/P2TOyWYG5oNZUmjr2R/ClRBnlxu', 'VOlM2dl1GlAgyqQsjDm9zrHCShnoj1eCAcBmHi8I4cYsvL6eMev1qVUmDm8d', NULL, NULL),
-	(2, 'Rizki', 'yazir@reinovasi.com', '$2y$10$oze8OXP4ma1o/FnFjXRNTusqlBU5l.2vBUQu1jch5usmeWXwETC9u', 'SO4HqAEmJcZI7QtmFIoz4ONbz6pOPltZo4p5fP7Nt3mWJTTbOEmMDTK088bR', '2018-06-02 23:21:53', '2018-06-02 23:21:53');
+	(1, 'Demo Admin', 'admin@example.com', '$2y$10$4aEgSdkvhaZCOyO8ReBSLuwdS/P2TOyWYG5oNZUmjr2R/ClRBnlxu', 'uMag9ecVcWcWffnUZddXtWcRIeIr2JmMlQwUndBVDWQqtHLIFStpRnLnzNZR', NULL, NULL),
+	(2, 'Rizki', 'yazir@reinovasi.com', '$2y$10$oze8OXP4ma1o/FnFjXRNTusqlBU5l.2vBUQu1jch5usmeWXwETC9u', 'ZaX4eIlPNMCgysr0f9R9ZYWvgxnYFMM95SkBZlDJPMseleQKpxAxzbheDnfq', '2018-06-02 23:21:53', '2018-06-02 23:21:53');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

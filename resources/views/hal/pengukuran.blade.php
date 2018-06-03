@@ -83,8 +83,8 @@
             <thead>
                 <tr>
                     <th width="20px">NO</th>
-                    <th>NAMA UNIT KERJA</th>
-                    <th width="5%" style="text-align: center; ">TW1</th>
+                    <th style="text-align: center; ">NAMA UNIT KERJA</th>
+                    <th width="7%" style="text-align: center; ">TW1</th>
                     <th width="7%" style="text-align: center; ">TW2</th>
                     <th width="7%" style="text-align: center; ">TW3</th>
                     <th width="7%" style="text-align: center; ">TW4</th>
@@ -95,13 +95,15 @@
                 @forelse($pengukuran as $no => $p)
                 <tr>
                     <td>{{ $no += 1 }}</td>
-                    <td>{{ $p->nama_unit }}</td>
+                    <td align="left">{{ $p->nama_unit }}</td>
                     <td
                         style="color: white; background:
                         @if($p->tw1 >= 100)
                         #007f02
                         @elseif($p->tw1 >= 80 && $p->tw1 < 100)
                         #fdd700
+                        @elseif($p->tw1 == 0)
+                        none
                         @else
                         #fe0000
                         @endif
@@ -113,6 +115,8 @@
                         #007f02
                         @elseif($p->tw2 >= 80 && $p->tw2 < 100)
                         #fdd700
+                        @elseif($p->tw2 == 0)
+                        none
                         @else
                         #fe0000
                         @endif
@@ -124,6 +128,8 @@
                         #007f02
                         @elseif($p->tw3 >= 80 && $p->tw3 < 100)
                         #fdd700
+                        @elseif($p->tw3 == 0)
+                        none
                         @else
                         #fe0000
                         @endif
@@ -135,6 +141,8 @@
                         #007f02
                         @elseif($p->tw4 >= 80 && $p->tw4 < 100)
                         #fdd700
+                        @elseif($p->tw4 == 0)
+                        none
                         @else
                         #fe0000
                         @endif

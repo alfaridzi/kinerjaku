@@ -72,14 +72,16 @@ class HomeController extends Controller
             session(['tahun' => $tahun]);
         }
 
-        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id');
 
-        if(Session::has('tahun')) {
-            $pengukurans->whereYear('pengukuran.created_at', Session::get('tahun'));
-        }
+       // if(Session::has('tahun')) {
+         //   $pengukurans->whereYear('pengukuran.created_at', Session::get('tahun'));
+       // }
 
         if($unit != null) {
-            $pengukurans->where('parent_id', $unit);
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=','0');
+        }else{
+
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=',$unit);
         }
 
         $pengukuran      =   $pengukurans->get();

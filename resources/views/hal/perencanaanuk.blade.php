@@ -61,7 +61,7 @@
     						    <tr>
 								  <tr>
                                     <td><?php $i++;echo $i;?></td>
-                                    <td style="text-align: left">{!! $unitkerja->nama_unit !!}</td>
+                                    <td style="text-align: left">{!! $unitkerja->nama_unit !!} <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button></td>
                                     <td>
                                         @if($unitkerja->tusi)
                                         <a href="{!! $unitkerja->tusi !!}" target="_blank"title="TUSI {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>

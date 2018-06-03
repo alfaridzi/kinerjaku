@@ -20,8 +20,8 @@
     </div>
 </header>
 <div class="container">
-    <h3 class="right-line"style="margin-top:-15px">   Unit Kerja  <a class="btn btn-primary"data-toggle="modal" data-target="#myModal" href=""><i class="fa fa-edit"></i> Update Perencanaan Kinerja</a></h3>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <h3 class="right-line"style="margin-top:-15px">   Unit Kerja  <a class="btn btn-primary"data-toggle="modal" data-target="#myModal1" href=""><i class="fa fa-edit"></i> Update Perencanaan Kinerja</a></h3>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">
@@ -106,7 +106,7 @@
                                     @forelse($perencanaan as $unitkerja)
     						    <tr>
 								    <td><?php $i++;echo $i;?></td>
-								    <td style="text-align: left">{!! $unitkerja->nama_unit !!}</td>
+								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button></td>
                                     <td>
                                         @if($unitkerja->tusi)
                                         <a href="{!! $unitkerja->tusi !!}" target="_blank"title="TUSI {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
