@@ -21,6 +21,57 @@
 </header>
 <div class="container">
 <section class="margin-bottom">
+      @if(Auth::user())
+      <h1>Unit Kerja</h1> <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
+
+      <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Tambah Pengukuran Kinerja</h4>
+          </div>
+          <form action="/perencanaan/tambah" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+          <div class="modal-body">
+                <div>
+                  <span>Nama Unit</span>
+                    <select class="form-control" name="unitkerja_id" id="unitkerja">
+                      @foreach($unit as $u)
+                        <option value="{{ $u->unitkerja_id }}">{{ $u->nama_unit }}</option>
+                      @endforeach
+                    </select>
+                </div><br>
+                <div>
+                    <span>RENSRA</span>
+                    <input type="file" name="renstra" class="form-control" placeholder="RENSRA">
+                </div><br>
+                <div>
+                    <span>PK</span>
+                    <input type="file" name="pk" class="form-control" placeholder="PK">
+                </div><br>
+                <div>
+                    <span>Tahun</span>
+                    <input type="number" name="tahun" id="tahun" class="form-control" placeholder="Tahun">
+                </div><br>
+                <div>
+                    <span>keterangan</span>
+                    <textarea id="keterangan" name="keterangan" class="form-control" placeholder="keterangan"></textarea>
+                </div><br>
+          </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="submit_data">Tambah Data</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+          </div>
+
+      </div>
+      </div>
+      @endif
+
     <div class="panel panel-primary-dark">
 		<div class="panel-heading">PERENCANAAN KINERJA PADA TAHUN  {{$tahun}} <select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" style="color:black"class="pull-right">
     <option value="thn/2020"@if($tahun == '2020') selected @endif>2020</option>
@@ -29,46 +80,6 @@
 		<option value="thn/2017"@if($tahun == '2017') selected @endif>2017</option>
 		<option value="thn/2016"@if($tahun == '2016') selected @endif>2016</option>
 		</select></div>
-
-    @if(Auth::user() && in_array("2", \Session::get('role')))
-    <br><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
-
-    <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Tambah Pengukuran Kinerja</h4>
-        </div>
-        <div class="modal-body">
-            <div>
-              <span>Nama Unit</span>
-                <select id="id_unit" class="form-control">
-                    @foreach($unit as $u)
-                        <option value="{{ $u->nama_unit }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
-                    @endforeach
-                </select>
-            </div><br>
-            <div>
-                <span>RENSRA</span>
-                <input type="file" id="rensra" class="form-control" placeholder="RENSRA">
-            </div><br>
-            <div>
-                <span>PK</span>
-                <input type="file" id="pk" class="form-control" placeholder="PK">
-            </div><br>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="submit_data" data-dismiss="modal">Tambah Data</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-
-    </div>
-    </div>
-    @endif
 
 		<div class="panel-body">
 	<table class="table table-hover table-striped table-bordered table-hover text-center">
@@ -87,10 +98,10 @@
                                     @forelse($perencanaan as $unitkerja)
     						    <tr>
 								    <td><?php $i++;echo $i;?></td>
-								    <td style="text-align: left">{!! $unitkerja->nama_unit !!}</td>
+								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} @if(Auth::user() && in_array("1", \Session::get('role'))) <a href="#" class="btn btn-primary btn-sm update" data-id="{{ $unitkerja->perancanaan_id }}" data-toggle="modal" data-target="#myModal">Update Unit Kerja</a> @endif </td>
                                     <td>
                                         @if($unitkerja->renstra)
-                                        <a href="{!! $unitkerja->renstra !!}" target="_blank" class="glyphicon glyphicon-search"title="Renstra {!! $unitkerja->nama_unit !!}"></a>
+                                        <a href="/perencanaan/download/{!! $unitkerja->renstra !!}" target="_blank" class="glyphicon glyphicon-search"title="Renstra {!! $unitkerja->nama_unit !!}"></a>
                                         @endif </td>
                                     <td>
                                         @if($unitkerja->rkt_id)
@@ -98,7 +109,7 @@
                                         @endif </td>
                                     <td>
                                         @if($unitkerja->pk)
-                                        <a href="{!! $unitkerja->pk !!}" target="_blank"title="PK {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
+                                        <a href="/perencanaan/download/{!! $unitkerja->pk !!}" target="_blank"title="PK {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
                                         @endif </td>
                                      <td>
                                         @if($unitkerja->iku_id)

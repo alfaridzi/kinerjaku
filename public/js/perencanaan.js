@@ -1,31 +1,27 @@
 $(document).ready(function() {
 
-    $(document).on('click', '#submit_data', function() {
-        let     unit     =      $("#id_unit").val(),
-                rensra   =      $("#rensra").prop('files'),
-                pk       =      $("#pk").prop('files');
+    $(".update").on('click', function() {
+        let   id  = $(this).attr('data-id');
 
         $.ajax({
-            url: '/perencanaan/tambah',
-            method: 'GET',
-            data: {
-                rensra: rensra,
-                pk: pk,
-                unit: unit,
-            },
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function(data) {
-                alert('Data berhasil ditambahkan');
+          url: '/perencanaan/edit/' + id,
+          method: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            $("#unitkerja").prepend(`<option value="${data.unitkerja_id}" default="" selected="">${data.nama_unit}</option>`);
+            $("#tahun").val(data.tahun);
+            $("#keterangan").val(data.keterangan);
 
-                console.log(data);
+            $(".modal-body").append(`
+              <a href="/perencanaan/rkt/${data.unitkerja_id}" class="btn btn-primary">RKT</a>
+              <a href="/perencanaan/iku/${data.unitkerja_id}" class="btn btn-primary">IKU</a>
+            `);
 
-                $("#id_unit").val('');
-                $("#rensra").val('');
-                $("#pk").val('');
-            }
-        });
+            $("form").attr('action',`/perencanaan/update/${data.perancanaan_id}`);
+
+            $("#submit_data").html('Update Data');
+          }
+        })
     });
 
 });

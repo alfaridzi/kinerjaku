@@ -32,11 +32,49 @@ class HomeController extends Controller
         session(['tahun' => $tahun]);
         }
         $i = 0;
-        $perencanaanawal = UnitKerja::leftJoin('perencanaan','perencanaan.unitkerja_id','unitkerja.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=','0')->get();
+        $perencanaanawal =   UnitKerja::leftJoin('perencanaan', 'unitkerja.unitkerja_id', 'perencanaan.unitkerja_id')->select('unitkerja.unitkerja_id','rkt_id','nama_unit','iku_id','renstra','pk','keterangan','tahun', 'perancanaan_id')->where('perencanaan.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('perencanaan.tahun')->where('unitkerja.parent_id','=','0')->get();
 
         $unit            =   UnitKerja::get();
 
         return view('hal.perencanaan', compact('tahun', 'i', 'unit'))->with('perencanaan',$perencanaanawal);
+    }
+
+    function editPerencanaan($id) {
+      $data   =   Perencanaan::where('perancanaan_id', $id)->join('unitkerja', 'perencanaan.unitkerja_id', 'unitkerja.unitkerja_id')->first();
+
+      return Response::json($data);
+    }
+
+    function updatePerencanaan($id, Request $request) {
+      $this->validate($request, [
+        'unitkerja_id'   =>  'required',
+      ]);
+
+      $perencanaan  = Perencanaan::where('perancanaan_id', $id)->first();
+
+      $rensra   =   $request->file('rensra');
+      $pk       =   $request->file('pk');
+
+      if ($rensra != null || $rensra != '') {
+        $r_name   =   str_slug($request->nama_unit) . '_rensra_.' . $rensra->getClientOriginalExtension();
+        $rensra->move(public_path('/files'), $r_name);
+        $request->request->add(['renstra' => $r_name]);
+      }
+
+      if ($pk != null || $pk != '') {
+        $p_name   =   str_slug($request->nama_unit) . '_pk_.' . $rensra->getClientOriginalExtension();
+        $pk->move(public_path('/files'), $p_name);
+        $request->request->add(['pk' => $pk]);
+      }
+
+      Perencanaan::where('perancanaan_id', $id)->update($request->except(['_token']));
+
+      return redirect()->back();
+    }
+
+    function download($files) {
+      $file = './files/' . $files;
+      return Response::download($file);
     }
 
     public function getPerencanaanUk($unit)
@@ -54,8 +92,28 @@ class HomeController extends Controller
     }
 
     function getPerencanaanTambah(Request $request){
+      $this->validate($request, [
+        'unitkerja_id'   =>  'required',
+      ]);
 
-      return Response::json($request->rensra);
+      $rensra   =   $request->file('rensra');
+      $pk       =   $request->file('pk');
+
+      if ($rensra != null || $rensra != '') {
+        $r_name   =   str_slug($request->nama_unit) . '_rensra_.' . $rensra->getClientOriginalExtension();
+        $rensra->move(public_path('/files'), $r_name);
+        $request->request->add(['renstra' => $r_name]);
+      }
+
+      if ($pk != null || $pk != '') {
+        $p_name   =   str_slug($request->nama_unit) . '_pk_.' . $rensra->getClientOriginalExtension();
+        $pk->move(public_path('/files'), $p_name);
+        $request->request->add(['pk' => $pk]);
+      }
+
+      Perencanaan::create($request->except(['_token']));
+
+      return redirect()->back();
     }
 
     public function changeTahun($tahun)
@@ -72,14 +130,16 @@ class HomeController extends Controller
             session(['tahun' => $tahun]);
         }
 
-        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id');
 
-        if(Session::has('tahun')) {
-            $pengukurans->whereYear('pengukuran.created_at', Session::get('tahun'));
-        }
+       // if(Session::has('tahun')) {
+         //   $pengukurans->whereYear('pengukuran.created_at', Session::get('tahun'));
+       // }
 
         if($unit != null) {
-            $pengukurans->where('parent_id', $unit);
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=','0');
+        }else{
+
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=',$unit);
         }
 
         $pengukuran      =   $pengukurans->get();
@@ -99,7 +159,7 @@ class HomeController extends Controller
         return Response::json('true');
     }
 
-    function getRkt($unit, $rkt) {
+    function getRkt($unit) {
         $rkt    =   Rkt::where('parent_rkt', 0)
                     ->where('unitkerja_id', $unit)->get();
 
@@ -110,7 +170,7 @@ class HomeController extends Controller
         return view('hal.rkt', compact('rkt', 'unit', 'i'));
     }
 
-    function getIku($unit, $iku) {
+    function getIku($unit) {
         $iku    =   Iku::where('unitkerja_id', $unit)->get();
 
         $unit   =   UnitKerja::where('unitkerja_id', $unit)->first();

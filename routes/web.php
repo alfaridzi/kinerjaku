@@ -19,10 +19,13 @@ Route::group(['as' => 'login'], function() {
 
 Route::get('/', 'HomeController@index');
 Route::get('/perencanaan', 'HomeController@getPerencanaan');
-Route::get('/perencanaan/tambah', 'HomeController@getPerencanaanTambah');
+Route::post('/perencanaan/tambah', 'HomeController@getPerencanaanTambah');
+Route::get('/perencanaan/edit/{id}', 'HomeController@editPerencanaan');
+Route::post('/perencanaan/update/{id}', 'HomeController@updatePerencanaan');
 Route::get('/perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
-Route::get('/rkt/{unit}/{rkt}', 'HomeController@getRkt');
-Route::get('/iku/{unit}/{iku}', 'HomeController@getIku');
+Route::get('/perencanaan/download/{file}', 'HomeController@download');
+Route::get('/perencanaan/rkt/{unit}', 'HomeController@getRkt');
+Route::get('/perencanaan/iku/{unit}', 'HomeController@getIku');
 
 Route::get('/thn/{tahun}', 'HomeController@changeTahun');
 
