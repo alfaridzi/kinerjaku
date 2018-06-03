@@ -8,6 +8,8 @@ $(document).ready(function() {
           method: 'GET',
           dataType: 'json',
           success: function(data) {
+            remove();
+
             $("#unitkerja_id").prepend(`<option value="${data.unitkerja_id}" default="" selected="">${data.nama_unit}</option>`);
             $("#tahun").val(data.tahun);
             $("#keterangan").val(data.keterangan);
