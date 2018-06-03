@@ -32,7 +32,7 @@
 		<div class="panel-body">
 
         @if(Auth::user() && in_array("2", \Session::get('role')))
-        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Pengukuran Kerja</button><br><br>   
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Pengukuran Kerja</button><br><br>
 
         <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -45,6 +45,7 @@
             </div>
             <div class="modal-body">
                 <div>
+                  <span>Nama Unit</span>
                     <select id="id_unit" class="form-control">
                         @foreach($unit as $u)
                             <option value="{{ $u->nama_unit }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
@@ -52,15 +53,19 @@
                     </select>
                 </div><br>
                 <div>
+                    <span>Triwulan 1</span>
                     <input type="number" id="tw1" class="form-control" placeholder="Triwulan 1">
                 </div><br>
                 <div>
+                    <span>Triwulan 2</span>
                     <input type="number" id="tw2" class="form-control" placeholder="Triwulan 2">
                 </div><br>
                 <div>
+                    <span>Triwulan 3</span>
                     <input type="number" id="tw3" class="form-control" placeholder="Triwulan 3">
                 </div><br>
                 <div>
+                    <span>Triwulan 4</span>
                     <input type="number" id="tw4" class="form-control" placeholder="Triwulan 4">
                 </div>
             </div>
@@ -71,7 +76,7 @@
             </div>
 
         </div>
-        </div>  
+        </div>
         @endif
 
         <table class="table table-hover table-striped table-bordered table-hover text-center">
@@ -169,6 +174,6 @@
         </table>
 	</div>
 	</div>
-</section> 
+</section>
 </div>
 @endsection

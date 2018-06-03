@@ -92,7 +92,11 @@
 			?>
             @foreach($menu as $menuitem)
 			<li>
+                    @if($menuitem->link == '/')
                     <a href="{!! $menuitem->link !!}">{{$menuitem->name}}</a>
+                    @else
+                    <a href="/{!! $menuitem->link !!}">{{$menuitem->name}}</a>
+                    @endif
 			</li>
 			@endforeach
              </ul>

@@ -18,14 +18,20 @@ Route::group(['as' => 'login'], function() {
 });
 
 Route::get('/', 'HomeController@index');
-Route::get('perencanaan', 'HomeController@getPerencanaan');
-Route::get('perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
-Route::get('thn/{tahun}', 'HomeController@changeTahun');
-Route::get('pengukuran/tambah', 'HomeController@getPengukuranTambah');
-Route::get('pengukuran', 'HomeController@getPengukuran');
-Route::get('pengukuran/uk/{unit}', 'HomeController@getPengukuran');
-Route::get('pelaporan', 'HomeController@getPelaporan');
-Route::get('evaluasi', 'HomeController@getEvaluasi');
+Route::get('/perencanaan', 'HomeController@getPerencanaan');
+Route::get('/perencanaan/tambah', 'HomeController@getPerencanaanTambah');
+Route::get('/perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
+Route::get('/rkt/{unit}/{rkt}', 'HomeController@getRkt');
+Route::get('/iku/{unit}/{iku}', 'HomeController@getIku');
+
+Route::get('/thn/{tahun}', 'HomeController@changeTahun');
+
+Route::get('/pengukuran/tambah', 'HomeController@getPengukuranTambah');
+Route::get('/pengukuran', 'HomeController@getPengukuran');
+Route::get('/pengukuran/uk/{unit}', 'HomeController@getPengukuran');
+
+Route::get('/pelaporan', 'HomeController@getPelaporan');
+Route::get('/evaluasi', 'HomeController@getEvaluasi');
 Route::group([
     'prefix' => config('backpack.base.route_prefix'),
     'middleware' => ['web', 'admin'],
