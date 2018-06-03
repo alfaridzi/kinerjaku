@@ -29,6 +29,9 @@ Route::post('/perencanaan/rkt/tambah/{unit}', 'HomeController@postRkt');
 Route::get('/perencanaan/rkt/edit/{id}', 'HomeController@editRkt');
 Route::post('/perencanaan/rkt/update/{id}', 'HomeController@updateRkt');
 Route::get('/perencanaan/iku/{unit}', 'HomeController@getIku');
+Route::post('/perencanaan/iku/tambah/{unit}', 'HomeController@postIku');
+Route::get('/perencanaan/iku/edit/{id}', 'HomeController@editIku');
+Route::post('/perencanaan/iku/update/{id}', 'HomeController@updateIku');
 
 Route::get('/thn/{tahun}', 'HomeController@changeTahun');
 
