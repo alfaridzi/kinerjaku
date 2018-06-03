@@ -170,6 +170,27 @@ class HomeController extends Controller
         return view('hal.rkt', compact('rkt', 'unit', 'i'));
     }
 
+    function postRkt($unit, Request $request) {
+      $request->request->add(['unitkerja_id' => $unit]);
+
+      Rkt::create($request->except(['_token']));
+
+      return redirect()->back();
+    }
+
+    function editRkt($id) {
+      $data   =   Rkt::where('rkt_id', $id)
+                  ->select('rkt.*', 'rkt.2017 as satu', 'rkt.2018 as dua', 'rkt.2019 as tiga', 'rkt.2020 as empat')->first();
+
+      return Response::json($data);
+    }
+
+    function updateRkt($id, Request $request) {
+      $r = Rkt::where('rkt_id', $id)->update($request->except(['_token']));
+
+      return redirect()->back();
+    }
+
     function getIku($unit) {
         $iku    =   Iku::where('unitkerja_id', $unit)->get();
 
@@ -178,5 +199,25 @@ class HomeController extends Controller
         $i      =   0;
 
         return view('hal.iku', compact('iku', 'unit', 'i'));
+    }
+
+    function postIku($unit, Request $request) {
+      $request->request->add(['unitkerja_id' => $unit]);
+
+      Iku::create($request->except(['_token']));
+
+      return redirect()->back();
+    }
+
+    function editIku($id) {
+      $data   = Iku::where('iku_id', $id)->first();
+
+      return Response::json($data);
+    }
+
+    function updateIku($id, Request $request) {
+      Iku::where('iku_id', $id)->update($request->except(['_token']));
+
+      return redirect()->back();
     }
 }

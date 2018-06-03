@@ -25,7 +25,13 @@ Route::post('/perencanaan/update/{id}', 'HomeController@updatePerencanaan');
 Route::get('/perencanaan/uk/{unit}', 'HomeController@getPerencanaanUk');
 Route::get('/perencanaan/download/{file}', 'HomeController@download');
 Route::get('/perencanaan/rkt/{unit}', 'HomeController@getRkt');
+Route::post('/perencanaan/rkt/tambah/{unit}', 'HomeController@postRkt');
+Route::get('/perencanaan/rkt/edit/{id}', 'HomeController@editRkt');
+Route::post('/perencanaan/rkt/update/{id}', 'HomeController@updateRkt');
 Route::get('/perencanaan/iku/{unit}', 'HomeController@getIku');
+Route::post('/perencanaan/iku/tambah/{unit}', 'HomeController@postIku');
+Route::get('/perencanaan/iku/edit/{id}', 'HomeController@editIku');
+Route::post('/perencanaan/iku/update/{id}', 'HomeController@updateIku');
 
 Route::get('/thn/{tahun}', 'HomeController@changeTahun');
 
