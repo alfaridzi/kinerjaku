@@ -31,8 +31,7 @@
 		</select></div>
 
     @if(Auth::user() && \Session::has('role'))
-    @if(in_array("2", \Session::get('role')))
-    <br><button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
+    <br><button type="button" class="btn btn-info btn-md created" data-toggle="modal" data-target="#myModal">Tambah Perencanaan Kinerja</button><br><br>
 
     <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -43,33 +42,39 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Tambah Pengukuran Kinerja</h4>
         </div>
+        <form action="/perencanaan/tambah" method="post">
+          {{ csrf_field() }}
         <div class="modal-body">
             <div>
               <span>Nama Unit</span>
-                <select id="id_unit" class="form-control">
+                <select id="unitkerja_id" name="unitkerja_id" class="form-control">
                     @foreach($unit as $u)
-                        <option value="{{ $u->nama_unit }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
+                        <option value="{{ $u->unitkerja_id }}" data-id="{{ $u->nama_unit }}">{{ $u->nama_unit }}</option>
                     @endforeach
                 </select>
             </div><br>
             <div>
                 <span>RENSRA</span>
-                <input type="file" id="rensra" class="form-control" placeholder="RENSRA">
+                <input type="file" name="renstra" id="renstra" class="form-control" placeholder="RENSRA">
             </div><br>
             <div>
                 <span>PK</span>
-                <input type="file" id="pk" class="form-control" placeholder="PK">
+                <input type="file" name="pk" id="pk" class="form-control" placeholder="PK">
+            </div><br>
+            <div>
+                <span>Tahun</span>
+                <input type="number" name="tahun" id="tahun" class="form-control" placeholder="Tahun">
             </div><br>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="submit_data" data-dismiss="modal">Tambah Data</button>
+            <button type="submit" class="btn btn-primary" id="submit_data">Tambah Data</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         </div>
+        </form>
 
     </div>
     </div>
-    @endif
     @endif
 
 		<div class="panel-body">
@@ -91,7 +96,7 @@
                                     @forelse($perencanaan as $unitkerja)
     						    <tr>
 								    <td><?php $i++;echo $i;?></td>
-								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} @if(Auth::user() && \Session::has('role') && in_array("1", \Session::get('role')) ) <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button>@endif</td>
+								    <td style="text-align: left">{!! $unitkerja->nama_unit !!} @if(Auth::user() && $unitkerja->perancanaan_id && \Session::has('role') && in_array("1", \Session::get('role')) ) <button type="button" class="btn btn-info btn-sm update" data-id="{{ $unitkerja->perancanaan_id }}" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit"></i> Update</button>@endif</td>
                                     <td>
                                         @if($unitkerja->tusi)
                                         <a href="{!! $unitkerja->tusi !!}" target="_blank"title="TUSI {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
