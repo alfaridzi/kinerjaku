@@ -20,23 +20,6 @@
     </div>
 </header>
 <div class="container">
-    <h3 class="right-line"style="margin-top:-15px">   Unit Kerja  <a class="btn btn-primary"data-toggle="modal" data-target="#myModal1" href=""><i class="fa fa-edit"></i> Update Perencanaan Kinerja</a></h3>
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-    </div>
-    <div class="modal-body">
-        ...
-    </div>
-    <div class="modal-footer">
-        ...
-    </div>
-</div>
-</div>
-</div>
 <section class="margin-bottom">
     <div class="panel panel-primary-dark">
 		<div class="panel-heading">PERENCANAAN KINERJA PADA TAHUN  {{$tahun}} <select  onChange="window.document.location.href=this.options[this.selectedIndex].value;" style="color:black"class="pull-right">
@@ -113,7 +96,7 @@
                                         @endif </td>
                                     <td>
                                         @if($unitkerja->renstra)
-                                        <a href="{!! $unitkerja->renstra !!}" target="_blank" class="glyphicon glyphicon-search"title="Renstra {!! $unitkerja->nama_unit !!}"></a>
+                                        <a href="/perencanaan/download/{!! $unitkerja->renstra !!}" target="_blank" class="glyphicon glyphicon-search"title="Renstra {!! $unitkerja->nama_unit !!}"></a>
                                         @endif </td>
                                     <td>
                                         @if($unitkerja->rkt_id)
@@ -125,7 +108,7 @@
                                         @endif </td>
                                     <td>
                                         @if($unitkerja->pk)
-                                        <a href="{!! $unitkerja->pk !!}" target="_blank"title="PK {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
+                                        <a href="/perencanaan/download/{!! $unitkerja->pk !!}" target="_blank"title="PK {!! $unitkerja->nama_unit !!}" class="glyphicon glyphicon-search"></a>
                                         @endif </td>
                                      <td>
                                         @if($unitkerja->iku_id)
