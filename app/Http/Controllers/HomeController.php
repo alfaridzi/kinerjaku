@@ -78,10 +78,10 @@ class HomeController extends Controller
        // }
 
         if($unit != null) {
-        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=','0');
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=',$unit);
         }else{
 
-        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=',$unit)->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=',$unit);
+        $pengukurans     =   UnitKerja::leftJoin('pengukuran', 'pengukuran.unitkerja_id', 'unitkerja.unitkerja_id')->where('pengukuran.tahun','=',$tahun)->where('unitkerja.parent_id','=','0')->orWhereNull('pengukuran.tahun')->where('unitkerja.parent_id','=','0');
         }
 
         $pengukuran      =   $pengukurans->get();
