@@ -195,6 +195,7 @@ class HomeController extends Controller
         $iku    =   Iku::where('unitkerja_id', $unit)->get();
 
         $unit   =   UnitKerja::where('unitkerja_id', $unit)->first();
+   
 
         $i      =   0;
 

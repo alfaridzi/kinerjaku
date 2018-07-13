@@ -119,7 +119,7 @@
                                         @endif </td>
                                      <td>
                                         @if($unitkerja->iku_id)
-                                        <a href="{!! URL::to('iku/'.$unitkerja->unitkerja_id.'/'.$unitkerja->iku_id) !!}" title="IKU {!! $unitkerja->nama_unit !!}"><i class="glyphicon glyphicon-search"></i></a>
+                                        <a href="{!! URL::to('perencanaan/iku/'.$unitkerja->unitkerja_id) !!}" title="IKU {!! $unitkerja->nama_unit !!}"><i class="glyphicon glyphicon-search"></i></a>
                                         @endif </td>
                                     <td>
                                         <a href="{!! URL::to('perencanaan/uk/'.$unitkerja->unitkerja_id) !!}" title="Tingkat Selanjutnya {!! $unitkerja->nama_unit !!}"><i class="glyphicon glyphicon-search"></i></a></td>

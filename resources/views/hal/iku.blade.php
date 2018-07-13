@@ -32,7 +32,9 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Tambah IKU</h4>
       </div>
-      <form action="/perencanaan/iku/tambah/{{ $unit->unitkerja_id }}" method="post">
+
+      
+      <form>
         {{ csrf_field() }}
       <div class="modal-body">
           <div>
